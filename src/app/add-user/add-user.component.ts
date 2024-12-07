@@ -4,6 +4,7 @@ import { User } from '../../models/addUserModel';
 import { UserService } from '../../services/user-service';
 import { Router } from '@angular/router';
 import { Observer } from 'rxjs';
+import { numberLength } from '../validators/number-length-validator';
 
 @Component({
   selector: 'app-add-user',
@@ -28,7 +29,7 @@ export class AddUserComponent {
       nationalCode:  new FormControl(null,
       {
        nonNullable: true,
-       validators:[Validators.required]})
+       validators:[Validators.required, numberLength(10)]})
   })
 
   userObserver: Observer<any> = {

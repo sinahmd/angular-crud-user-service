@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user-service';
+import { numberLength } from '../validators/number-length-validator';
 
 @Component({
   selector: 'app-user-edit',
@@ -20,7 +21,7 @@ export class UserEditComponent implements OnInit {
     this.formGroup = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
-      nationalCode: new FormControl(null, [Validators.required]),
+      nationalCode: new FormControl({ value: '', disabled: true }, [Validators.required, numberLength(10)]),
     });
   }
 
@@ -35,7 +36,11 @@ export class UserEditComponent implements OnInit {
     this.userService.getUsers().subscribe((users) => {
       const user = users.find((u: any) => u.nationalCode.toString() === nationalCode);
       if (user) {
-        this.formGroup.patchValue(user); 
+        this.formGroup.setValue({
+          firstName: user.firstName,
+          lastName: user.lastName,
+          nationalCode: user.nationalCode,
+        });
       } else {
         alert('User not found!');
         this.router.navigate(['/alluser']);
@@ -45,8 +50,13 @@ export class UserEditComponent implements OnInit {
 
   onSubmit(): void {
     if (this.formGroup.valid) {
-      this.userService.editUser(this.formGroup.value).subscribe({
-        next: () => {
+      const updatedUser = {
+        ...this.formGroup.getRawValue(), 
+      };
+      this.userService.editUser(updatedUser).subscribe({
+        next: (d) => {
+          console.log(d,"dd")
+          // return this this.formGroup = d
           alert('succus!');
           this.router.navigate(['/alluser']);
         },
