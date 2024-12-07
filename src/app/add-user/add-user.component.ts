@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AddUser } from '../../models/addUserModel';
+import { User } from '../../models/addUserModel';
 import { UserService } from '../../services/user-service';
 import { Router } from '@angular/router';
 import { Observer } from 'rxjs';
@@ -13,7 +13,7 @@ import { Observer } from 'rxjs';
 })
 export class AddUserComponent {
   constructor(private userService: UserService, private router: Router) {}
-  formGroup: FormGroup = new FormGroup<AddUser>({
+  formGroup: FormGroup = new FormGroup<User>({
     firstName:  new FormControl("",
     {nonNullable: true,
       validators:[Validators.required]}
@@ -44,7 +44,9 @@ export class AddUserComponent {
   };
 
   onSubmit(): void {
+    console.log(this.formGroup.valid,"valiiid")
     if (this.formGroup.valid) {
+      
       this.userService.addUser(this.formGroup.value).subscribe(this.userObserver);
     }
   }

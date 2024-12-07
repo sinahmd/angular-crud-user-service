@@ -1,10 +1,11 @@
 <div >
     @for(user of users; track user.nationalCode) {
-        <span> {{user.nationalCode}} </span>
-        <span> {{user.firstName}} </span>
-        <span> {{user.lastName}} </span>
+    <div>
+        <span>NationalCode: {{user.nationalCode}} </span>
+        <span>LastName: {{user.firstName}} </span>
+        <span>FirstName: {{user.lastName}} </span>
         <button [routerLink]="'/edit-user/' + user.nationalCode">Edit</button>
-        
+    </div>
     } @empty {
         <span> there is no data!</span>
     }
