@@ -1,0 +1,15 @@
+<form [formGroup]="formGroup">
+    <div>
+      <label for="firstName">First Name:</label>
+      <input id="firstName" formControlName="firstName" type="text" />
+    </div>
+    <div>
+      <label for="lastName">Last Name:</label>
+      <input id="lastName" formControlName="lastName" type="text" />
+    </div>
+    <div>
+      <label for="nationalCode">National Code:</label>
+      <input id="nationalCode" formControlName="nationalCode" type="text" />
+    </div>
+    <button (click)="onSubmit()">Save</button>
+  </form>

@@ -1,0 +1,9 @@
+<form [formGroup]="formGroup">
+<span>first name:</span>
+<input formControlName="firstName" type="text">
+<span>last name:</span>
+<input formControlName="lastName" type="text">
+<span>national code:</span>
+<input formControlName="nationalCode" type="number">
+</form>
+<button (click)="onSubmit()">submit</button>
