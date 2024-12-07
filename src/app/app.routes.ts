@@ -9,7 +9,6 @@ export const routes: Routes = [
         path: '',
         component: HomeComponent,
         children: [
-            { path: '', component: HomeComponent },
             { path: 'add-user', component: AddUserComponent },
             { path: 'alluser', component: UserListComponent },
             { path: 'edit-user/:nationalCode', component: UserEditComponent },

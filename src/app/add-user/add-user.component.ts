@@ -12,7 +12,10 @@ import { Observer } from 'rxjs';
   styleUrl: './add-user.component.scss'
 })
 export class AddUserComponent {
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService, 
+    private router: Router
+    ) {}
   formGroup: FormGroup = new FormGroup<User>({
     firstName:  new FormControl("",
     {nonNullable: true,
