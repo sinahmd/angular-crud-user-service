@@ -53,7 +53,9 @@ export class UserEditComponent implements OnInit {
         ...this.formGroup.getRawValue(), 
       };
       this.userService.editUser(updatedUser).subscribe({
-        next: () => {
+        next: (d) => {
+          console.log(d,"dd")
+          // return this this.formGroup = d
           alert('succus!');
           this.router.navigate(['/alluser']);
         },

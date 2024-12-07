@@ -16,10 +16,10 @@ export class UserService {
     //     return this.http.post('http://localhost:3000/api/user/add', user);
     // }
     addUser(user: AddUser): Observable<any> {
-        return this.http.post('http://localhost:3000/api/user/add', user);
+        return this.http.post('http://localhost:3000/api/user/add', user, { responseType: 'text' });
     }
     editUser(user: AddUser): Observable<any> {
-        return this.http.put('http://localhost:3000/api/user/edit', user);
+        return this.http.put('http://localhost:3000/api/user/edit', user,  { responseType: 'text' });
     }
     getUserByNationalCode(nationalCode: number): Observable<any> {
         return this.http.get(`http://localhost:3000/api/user/${nationalCode}`);
